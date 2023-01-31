@@ -209,6 +209,9 @@ const loadTodos = () => {
   todos.forEach((todo) => {
     saveTodo(todo.text, todo.done, 0);
   });
+
+  document.querySelector("#colorpicker").value = localStorage.getItem("color")
+  changeColor()
 };
 
 const saveTodoLocalStorage = (todo) => {
@@ -247,8 +250,6 @@ const updateTodoLocalStorage = (todoOldText, todoNewText) => {
   localStorage.setItem("todos", JSON.stringify(todos));
 };
 
-loadTodos();
-
 const randomBackground = () => {
   bgImages = [
       'url("../to-do-js/img/desk1.jpg")',
@@ -258,3 +259,17 @@ const randomBackground = () => {
 
   document.body.style.backgroundImage = bgImages[Math.floor(Math.random() * 3)]
 }
+
+const changeColor = () => {
+  const colorValue = document.querySelector("#colorpicker").value
+  console.log(colorValue)
+
+  var root = document.querySelector(':root');
+  
+  root.style.setProperty('--v1-active', colorValue);
+  root.style.setProperty('--v1-bg-todo-done', colorValue+'dd');
+  
+  localStorage.setItem("color", colorValue);
+}
+
+loadTodos();
