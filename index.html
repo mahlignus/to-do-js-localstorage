@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- JS -->
+    <script src="js/scripts.js" defer></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>To-Do</title>
+</head>
+<body onload="randomBackground()">
+    <div class="todo-container">
+        <header>
+            <h1>To-Do</h1>
+        </header>
+
+        <form id="todo-form">
+            <p>Nova tarefa:</p>
+            <div class="form-control">
+                <input 
+                    type="text" 
+                    id="todo-input" 
+                    placeholder="O que você vai fazer?"
+                    required pattern=".*\S+.*"
+                    oninvalid="this.setCustomValidity('Digite uma tarefa')"
+                    oninput="this.setCustomValidity('')"
+                />
+                <button class="submit">
+                    <i class="fa-thin fa-plus"></i>
+                </button>
+            </div>
+        </form>
+        <form id="edit-form" class="hide">
+            <p>Edite a sua tarefa:</p>
+            <div class="form-control">
+                <input id="edit-id" hidden />
+                <input 
+                    type="text" 
+                    id="edit-input"
+                    required pattern=".*\S+.*"
+                    oninvalid="this.setCustomValidity('Digite uma tarefa')"
+                    oninput="this.setCustomValidity('')"
+                />
+                <button class="submit">
+                    <i class="fa-solid fa-check-double"></i>
+                </button>
+            </div>
+            <button id="cancel-edit-btn">Cancelar</button>
+        </form>
+        <div id="toolbar">
+            <div id="search">
+                <h4>Buscar:</h4>
+                <form>
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Buscar"
+                    />
+                    <button id="erase-button">
+                        <i class="fa-solid fa-delete-left"></i>
+                    </button>
+                </form>
+            </div>
+            <div id="filter">
+                <h4>Filtrar:</h4>
+                <select id="filter-select">
+                    <option value="all">Todos</option>
+                    <option value="done">Feitos</option>
+                    <option value="todo">A fazer</option>
+                </select>
+            </div>
+        </div>
+        <div id="todo-list">
+            <!-- Sample -->
+            <!--div class="todo">
+                <h3>Item 1</h3>
+                <button class="finish-todo">
+                    <i class="fa-solid fa-check"></i>
+                </button>
+                <button class="edit-todo">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="remove-todo">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="todo done">
+                <h3>Item 2</h3>
+                <button class="finish-todo">
+                    <i class="fa-solid fa-check"></i>
+                </button>
+                <button class="edit-todo">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="remove-todo">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div-->
+    </div>
+</body>
+</html>
