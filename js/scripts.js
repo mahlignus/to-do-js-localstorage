@@ -78,7 +78,7 @@ const getSearchedTodos = (search) => {
 
     todo.style.display = "flex";
 
-    console.log(todoTitle);
+    //console.log(todoTitle);
 
     if (!todoTitle.includes(search)) {
       todo.style.display = "none";
@@ -211,7 +211,9 @@ const loadTodos = () => {
   });
 
   document.querySelector("#colorpicker").value = localStorage.getItem("color")
+  
   changeColor()
+  sortByDoneDesc()
 };
 
 const saveTodoLocalStorage = (todo) => {
@@ -220,6 +222,7 @@ const saveTodoLocalStorage = (todo) => {
   todos.push(todo);
 
   localStorage.setItem("todos", JSON.stringify(todos));
+  sortByDoneDesc()
 };
 
 const removeTodoLocalStorage = (todoText) => {
@@ -238,6 +241,7 @@ const updateTodoStatusLocalStorage = (todoText) => {
   );
 
   localStorage.setItem("todos", JSON.stringify(todos));
+  sortByDoneDesc()
 };
 
 const updateTodoLocalStorage = (todoOldText, todoNewText) => {
@@ -262,7 +266,7 @@ const randomBackground = () => {
 
 const changeColor = () => {
   const colorValue = document.querySelector("#colorpicker").value
-  console.log(colorValue)
+  
 
   var root = document.querySelector(':root');
   
@@ -272,4 +276,35 @@ const changeColor = () => {
   localStorage.setItem("color", colorValue);
 }
 
-loadTodos();
+const sortFilteredToDosByTitle = (parent, filtered) => {
+  var sorted = filtered.sort(function (a, b) {
+    return a.querySelector("h3").innerHTML.localeCompare(b.querySelector("h3").innerHTML)
+  })
+
+  for (i = 0; i < sorted.length; i++) {
+    parent.appendChild(sorted[i])
+  }
+}
+
+const sortByDoneDesc = () => {
+  var elements = document.querySelectorAll('.todo')
+
+  var filteredDone = []
+  var filteredUndone = []
+
+  for (var i = 0; i < elements.length; i++) {
+      if (elements[i].classList.contains("done")) {
+        filteredDone.push(elements[i])
+      }else{
+        filteredUndone.push(elements[i])
+      } 
+  }
+
+  var parent = document.querySelectorAll('#todo-list')[0]
+
+  sortFilteredToDosByTitle(parent, filteredUndone)
+  sortFilteredToDosByTitle(parent, filteredDone)
+
+}
+
+loadTodos()
