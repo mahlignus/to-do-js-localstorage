@@ -267,7 +267,7 @@ const changeColor = () => {
   var root = document.querySelector(':root');
   
   root.style.setProperty('--v1-active', colorValue);
-  root.style.setProperty('--v1-bg-todo-done', colorValue+'dd');
+  root.style.setProperty('--v1-bg-todo-done', colorValue+'cc');
   
   localStorage.setItem("color", colorValue);
 }
